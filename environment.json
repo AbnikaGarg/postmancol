@@ -1,0 +1,57 @@
+{
+	"id": "05dfd3a9-1dea-43d5-a55a-0f014c430801",
+	"name": "Empinfo_V3_Environment(Direct MORTGAGE)",
+	"values": [
+		{
+			"key": "v3_order_id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "v3_Item_id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "verifierAccesstoken",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "host",
+			"value": "https://verify-api-sandbox.empinfo.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "reference_number",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "verifierexpiresIn",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Client_Id",
+			"value": "ffiH1qRez5FE5s0YA2VeljYBPGCBwMYH",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Client_secret",
+			"value": "02GyyWO307ORFLapLas1TRGO3WDM7a_EU-i0vUjJDikAdMCqef4--827Uz7ujY3U",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-02-17T11:16:00.739Z",
+	"_postman_exported_using": "Postman/10.10.5"
+}

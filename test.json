@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "66727265-7c76-40af-90fd-6b857922f4bd",
+		"name": "test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19211701"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "TC_V3GT_01",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"setTokens\", function () {",
+									"    ",
+									"     pm.environment.set(\"verifierAccesstoken\", jsonData.accessToken);",
+									"      pm.environment.set(\"verifierexpiresIn\", jsonData.expiresIn);",
+									"})",
+									"",
+									"pm.test(\"Valid credentials test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Token Expire in time should be greater than zero\", function () {",
+									"     pm.expect(pm.response.json().expiresIn).to.be.above(0);",
+									"});",
+									"",
+									"var schema={",
+									"    \"$ref\": \"#/definitions/Welcome6\",",
+									"    \"definitions\": {",
+									"        \"Welcome6\": {",
+									"            \"type\": \"object\",",
+									"            \"additionalProperties\": false,",
+									"            \"properties\": {",
+									"                \"accessToken\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"scope\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"expiresIn\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"tokenType\": {",
+									"                    \"type\": \"string\"",
+									"                }",
+									"            },",
+									"            \"required\": [",
+									"                \"accessToken\",",
+									"                \"expiresIn\",",
+									"                \"scope\",",
+									"                \"tokenType\"",
+									"            ],",
+									"            \"title\": \"Welcome6\"",
+									"        }",
+									"    }",
+									"}",
+									"pm.test('Verify Response Schema  is valid', function() {",
+									"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+									"",
+									"});",
+									"if(tv4.error!=null){",
+									"   console.log(\"Validation failed: \", tv4.error);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"client_id\": \"ffiH1qRez5FE5s0YA2VeljYBPGCBwMYH\",\n\"client_secret\": \"02GyyWO307ORFLapLas1TRGO3WDM7a_EU-i0vUjJDikAdMCqef4--827Uz7ujY3U\"\n}"
+						},
+						"url": {
+							"raw": "https://verify-api-sandbox.empinfo.com/auth/login",
+							"protocol": "https",
+							"host": [
+								"verify-api-sandbox",
+								"empinfo",
+								"com"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Verifier wil right credentials is able to generate token"
+					},
+					"response": []
+				},
+				{
+					"name": "TC_V3GT_02",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Invalid credentials test\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"  var jsonData=pm.response.json();",
+									"pm.test(\"Error code should be 10\", function () {",
+									"  ",
+									"    pm.expect(jsonData.errorCode).to.eql(10);",
+									"});",
+									"",
+									"var schema={",
+									"    ",
+									"    \"$ref\": \"#/definitions/Welcome3\",",
+									"    \"definitions\": {",
+									"        \"Welcome3\": {",
+									"            \"type\": \"object\",",
+									"            \"additionalProperties\": false,",
+									"            \"properties\": {",
+									"                \"message\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"errorCode\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"timestamp\": {",
+									"                    \"type\": \"integer\"",
+									"                }",
+									"            },",
+									"            \"required\": [",
+									"                \"errorCode\",",
+									"                \"message\",",
+									"                \"timestamp\"",
+									"            ],",
+									"            \"title\": \"Welcome3\"",
+									"        }",
+									"    }",
+									"}",
+									"pm.test('Response Schema  is valid', function() {",
+									"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+									" ",
+									"});",
+									"",
+									"if(tv4.error!=null){",
+									"   console.log(\"Validation failed: \", tv4.error);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"client_id\": \"NfQ7FnzHZYAcroBKHGrggubJfhlR4xN4a1\",\n\"client_secret\": \"xi3xCZ1WHmeIAZEEPs3bg0vc6pN6SXpoN4kINv1ikdxuw30rtlY2u-Y5vEejTBE7\"\n}"
+						},
+						"url": {
+							"raw": "https://verify-api-sandbox.empinfo.com/auth/login",
+							"protocol": "https",
+							"host": [
+								"verify-api-sandbox",
+								"empinfo",
+								"com"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Verifier wil invalid credentials is not able to generate token"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
